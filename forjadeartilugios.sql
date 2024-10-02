@@ -2,6 +2,7 @@
 DROP TABLE IF EXISTS `productos`;
 CREATE TABLE IF NOT EXISTS `productos` (
   `id_producto` int PRIMARY KEY NOT NULL,
+  `id_usuario` int NOT NULL,
   `nombre_producto` varchar(50) NOT NULL,
   `descripcion_producto` text NOT NULL,
   `destacado` boolean NOT NULL,
@@ -37,11 +38,14 @@ CREATE TABLE IF NOT EXISTS `imagenes_productos` (
 DROP TABLE IF EXISTS `mensajes`;
 CREATE TABLE IF NOT EXISTS `mensajes` (
   `id_mensaje` int PRIMARY KEY NOT NULL,
+  `id_usuario` int NOT NULL,
+  `asunto` varchar(250) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `email` varchar(250) NOT NULL,
   `telefono` varchar(25) NOT NULL,
   `texto` text NOT NULL,
-  `estado` boolean NOT NULL
+  `estado` boolean NOT NULL,
+  `FUA` datetime NOT NULL
 );
 
 -- Tabla imagenes_mensaje
@@ -64,8 +68,10 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `FUA` datetime NOT NULL
 );
 
---llaves foráneas
-ALTER TABLE `categorias_productos` ADD FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_producto`);
+-- Llaves foráneas
+ALTER TABLE `categorias_productos` ADD FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_producto`) ON DELETE CASCADE;
 ALTER TABLE `categorias_productos` ADD FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id_categoria`);
-ALTER TABLE `imagenes_productos` ADD FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_producto`);
+ALTER TABLE `imagenes_productos` ADD FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_producto`) ON DELETE CASCADE;
 ALTER TABLE `imagenes_mensaje` ADD FOREIGN KEY (`id_mensaje`) REFERENCES `mensajes` (`id_mensaje`);
+ALTER TABLE `mensajes` ADD FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`);
+ALTER TABLE `productos` ADD FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`);
