@@ -8,7 +8,7 @@ $id = $_REQUEST['id'];
 switch ($cmd) {
     case 'GET':
         if(isset($id)) {
-            getProductsById($conn, $id);
+            getProductById($conn, $id);
         } else {
             getProducts($conn);
         }
@@ -25,15 +25,34 @@ switch ($cmd) {
         echo "Comando no reconocido";
         break;
 }
-function getProductsById($conn, $id) {
-    $sql = "SELECT * FROM productos WHERE id_producto = :id";
+function getProductById($conn, $id_producto) {
+    $sqlProducto = "SELECT * FROM productos WHERE id_producto = :id_producto";
+    $stmtProducto = $conn->prepare($sqlProducto);
+    $stmtProducto->bindParam(':id_producto', $id_producto, PDO::PARAM_INT);
+    $stmtProducto->execute();
+    $producto = $stmtProducto->fetch(PDO::FETCH_ASSOC);
 
-    $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':id', $id);
-    $stmt->execute();
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if (!$producto) {
+        echo json_encode(['error' => 'Producto no encontrado']);
+        return;
+    }
 
-    echo json_encode($result);
+
+    $sqlImagenes = "SELECT * FROM imagenes_productos WHERE id_producto = :id_producto";
+    $stmtImagenes = $conn->prepare($sqlImagenes);
+    $stmtImagenes->bindParam(':id_producto', $id_producto, PDO::PARAM_INT);
+    $stmtImagenes->execute();
+    $imagenes = $stmtImagenes->fetchAll(PDO::FETCH_ASSOC);
+
+    $producto['imagenes'] = [];
+    foreach ($imagenes as $imagen) {
+        $producto['imagenes'][] = [
+            'id_imagen' => $imagen['id_imagen'],
+            'archivo' => $imagen['archivo'],
+            'principal' => $imagen['principal']
+        ];
+    }
+    echo json_encode($producto);
 }
 function getProducts($conn) {
 
