@@ -1,0 +1,102 @@
+@font-face {
+    font-family: 'forja';
+    src: url('../font/Archeologicaps.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+.titulo h1, .titulo p{
+    font-family: 'forja', sans-serif;
+    color: white;
+    text-align: center;
+}
+
+.banner{
+    width: 100%;
+    min-height: 500px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(../img/portada2.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position:center center;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    padding:20px;
+}
+
+.contenedor h3{
+    text-align: center;
+    padding: 20px;
+}
+
+.destacados{
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.producto-destacado{
+    width: 350px;
+    height: 400px;
+    background-color: #ededed;
+    display: flex;
+    flex-direction:column;
+    align-items:center;
+    border-radius: 5px;
+    padding: 25px 0;
+}
+
+.producto-destacado img{
+    width: 300px;
+    height: 300px;
+}
+
+.btn-a-catalogo{
+    display: block;
+    background-color: black;
+    color: white;
+    margin: 20px 0px;
+    padding: 10px 30px;
+    text-decoration:none;
+    justify-text:center;
+    border-radius: 5px;
+}
+
+.nosotros{
+    display: flex;
+    justify-content: center;
+    max-width: 100%;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.nosotros p{
+    width: 600px;
+    padding: 20px;
+    text-align: justify;
+}
+
+.nosotros img{
+    padding: 20px;
+    max-height: 500px;
+}
+
+.rrss{
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 10px;
+    gap: 20px;
+}
+
+
