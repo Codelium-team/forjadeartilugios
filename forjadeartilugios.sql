@@ -30,6 +30,7 @@ DROP TABLE IF EXISTS `imagenes_productos`;
 CREATE TABLE IF NOT EXISTS `imagenes_productos` (
   `id_imagen` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `id_producto` int NOT NULL,
+  `principal` boolean NOT NULL,
   `archivo` varchar(250) NOT NULL,
   `FUA` datetime NOT NULL
 );
@@ -75,3 +76,9 @@ ALTER TABLE `imagenes_productos` ADD FOREIGN KEY (`id_producto`) REFERENCES `pro
 ALTER TABLE `imagenes_mensaje` ADD FOREIGN KEY (`id_mensaje`) REFERENCES `mensajes` (`id_mensaje`);
 ALTER TABLE `mensajes` ADD FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`);
 ALTER TABLE `productos` ADD FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`);
+
+
+
+--INSERT DE PRODUCTOS 
+
+INSERT INTO `productos` (`id_producto`, `id_usuario`, `nombre_producto`, `descripcion_producto`, `destacado`, `FUA`) VALUES (NULL, '1', 'Conclave', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ', '1', '2024-11-10 01:01:39.000000');

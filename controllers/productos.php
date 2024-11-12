@@ -2,23 +2,23 @@
 
 include(__DIR__.'../../conexiones.php');
 
-$cmd = $_REQUEST['cmd'];
+$cmd = $_SERVER['REQUEST_METHOD'];
 $id = $_REQUEST['id'];
 
 switch ($cmd) {
-    case 'get':
+    case 'GET':
         if(isset($id)) {
             getProductsById($conn, $id);
         } else {
             getProducts($conn);
         }
         break;
-    case 'post':
+    case 'POST':
         postProduct($conn);
         break;
-    case 'put':
+    case 'PUT':
         updateProduct($conn, $id);
-    case 'delete':
+    case 'DELETE':
         deleteProduct($conn, $id);
         break;
     default:
@@ -36,13 +36,36 @@ function getProductsById($conn, $id) {
     echo json_encode($result);
 }
 function getProducts($conn) {
-    $sql = "SELECT * FROM productos";
-    
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    echo json_encode($result);
+    $sqlProductos = "SELECT * FROM productos";
+    $stmtProductos = $conn->prepare($sqlProductos);
+    $stmtProductos->execute();
+    $productos = $stmtProductos->fetchAll(PDO::FETCH_ASSOC);
+
+    $sqlImagenes = "SELECT * FROM imagenes_productos";
+    $stmtImagenes = $conn->prepare($sqlImagenes);
+    $stmtImagenes->execute();
+    $imagenes = $stmtImagenes->fetchAll(PDO::FETCH_ASSOC);
+
+    $imagenesPorProducto = [];
+    foreach ($imagenes as $imagen) {
+        $idProducto = $imagen['id_producto'];
+        if (!isset($imagenesPorProducto[$idProducto])) {
+            $imagenesPorProducto[$idProducto] = [];
+        }
+        $imagenesPorProducto[$idProducto][] = [
+            'id_imagen' => $imagen['id_imagen'],
+            'archivo' => $imagen['archivo'],
+            'principal' => $imagen['principal']
+        ];
+    }
+
+    foreach ($productos as &$producto) {
+        $productoId = $producto['id_producto'];
+        $producto['imagenes'] = $imagenesPorProducto[$productoId] ?? [];
+    }
+
+    echo json_encode($productos);
 }
 
 function postProduct($conn) {
