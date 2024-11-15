@@ -43,7 +43,7 @@
                 showConfirmButton: false,
                 timer: 2000
             }).then(() => {
-                window.location.href = '../views/mostrar.php';
+                window.location.href = '../views/formulario.php';
             });";
         }
         ?>
