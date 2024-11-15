@@ -39,10 +39,20 @@ function getImages() {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/galeria.css"> <!-- Asegúrate de que la ruta sea correcta -->
+    <link rel="stylesheet" href="../assets/css/galerias.css"> <!-- Asegúrate de que la ruta sea correcta -->
     <title>Galería</title>
 </head>
 <body>
+
+<div class="header">
+                <div class="logo">Mi Tienda</div>
+                <nav>
+                    <a href="#">Home</a>
+                    <a href="#">Catálogo</a>
+                    <a href="#">Sobre Nosotros</a>
+                    <a href="#">Cotizar</a>
+                </nav>
+            </div>
     <!-- Aquí va el contenido de las imágenes generado por PHP -->
    
 </body>

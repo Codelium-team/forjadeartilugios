@@ -16,7 +16,7 @@ body {
 .header nav a {
     margin: 0 10px;
     text-decoration: none;
-    color: #333;
+    color: #090000;
 }
 .container {
     display: flex;
@@ -24,7 +24,7 @@ body {
     margin: 20px auto;
     padding: 20px;
     border: 1px solid #ddd;
-    background-color: #fff;
+    background-color: #080000;
 }
 .images {
     flex: 1;

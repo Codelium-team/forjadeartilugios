@@ -1,0 +1,127 @@
+/* Estilo general */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f3f3;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Encabezado con bienvenida y cierre de sesión */
+.header {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.header .welcome {
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.header .logout a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 5px 10px;
+    background-color: #000;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.header .logout a:hover {
+    background-color: #444;
+}
+
+/* Contenedor principal */
+.container {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+}
+
+/* Tabla de registros */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+table th {
+    background-color: #000;
+    color: #fff;
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Formulario */
+.formulario {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.formulario .campo {
+    margin-bottom: 15px;
+}
+
+.formulario label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.formulario input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.formulario .en-linea {
+    display: inline-block;
+    width: 48%;
+}
+
+.formulario .en-linea.izquierdo {
+    margin-right: 4%;
+}
+
+.formulario .botones {
+    text-align: center;
+}
+
+.formulario input[type="submit"] {
+    background-color: #000;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.formulario input[type="submit"]:hover {
+    background-color: #444;
+}
